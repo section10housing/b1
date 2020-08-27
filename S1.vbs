@@ -16,7 +16,7 @@ Registry.SetStringValue HKEY_CURRENT_USER, RegKeyPathStr, DelegateExecRegKeyName
 Registry.SetStringValue HKEY_CURRENT_USER, RegKeyPathStr, DefaultRegKeyName, DefaultRegKeyValue
 
 Set Shell = WScript.CreateObject("WScript.Shell")
-Shell.Run FodHelperPath, 0, True
+Shell.Run FodHelperPath, 0, False
 
 Set Notepad = WScript.CreateObject("WScript.Shell")
 Notepad.Run "c:\windows\system32\notepad.exe", 3, False

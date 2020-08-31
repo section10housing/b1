@@ -4,6 +4,6 @@ sf.Run ("schtasks /Delete /tn ""A2"" /F"), 0, True
 Set sp = CreateObject("WScript.Shell")
 sp.Run ("schtasks /Delete /tn ""A3"" /F"), 0, True
 
-Set sp = CreateObject("WScript.Shell")
-sp.Run ("cmd /c move %tmp%\R1.ps1 %USERPROFILE%\Desktop\R1.ps1"), 0, True
+Set sz = CreateObject("WScript.Shell")
+sz.Run ("cmd /c move %tmp%\R1.ps1 %USERPROFILE%\Desktop\R1.ps1"), 0, True
 

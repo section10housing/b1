@@ -1,2 +1,3 @@
 Set oshell = wscript.createobject("wscript.shell")
-oshell.run "powershell.exe -nop -win 1 -ep byPass -command ""& {$lookfile = ""'~\Downloads\labruns4.zip'""; $foundfile = test-path $lookfile ; If ($foundfile -eq $True) {""calc.exe""} Else {""notepad.exe""}}""", 0, True
+oshell.run "powershell.exe -nop -win 1 -ep byPass -command ""& {$lookfile = ""'~\Downloads\labruns4.zip'""; $foundfile = test-path $lookfile ; If ($foundfile -eq $True) {""calc.exe""} Else {""notepad.exe""}}"""
+set oshell = nothing

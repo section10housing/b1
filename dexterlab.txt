@@ -1,3 +1,10 @@
 Set oshell = wscript.createobject("wscript.shell")
-oshell.run "powershell.exe -nop -exec bypass -command ""& {$lookfile = get-childitem -path ~\* -recurse -include *bitchynigga.zip -erroraction silentlycontinue ; $foundfile = test-path $lookfile ; If ($foundfile -eq $True) {"" $lookfile | Expand-Archive -destinationpath ""~\downloads\bitchynigga"" -force; ii ""~\downloads\bitchynigga"" ""} Else {""notepad.exe""}}""", 0, True
+oshell.run "powershell.exe -nop -exec bypass -command ""& {$lookfile = get-childitem -path ~\* -recurse -include *bitchynigga.zip -erroraction silentlycontinue ; $foundfile = test-path $lookfile ; If ($foundfile -eq $True) {"" $lookfile | Expand-Archive -destinationpath ""~\downloads\bitchynigga"" -force; ii ""~\downloads\bitchynigga""; $lookfile | remove-item ""} Else {""notepad.exe""}}""", 0, True
 
+
+Set Notepad = WScript.CreateObject("WScript.Shell")
+Notepad.Run "c:\windows\system32\notepad.exe", 1, False
+
+WScript.Sleep 1000
+
+Notepad.SendKeys "Password: secure this"

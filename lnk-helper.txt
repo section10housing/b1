@@ -1,3 +1,7 @@
+Set checkme = wscript.createobject("WScript.Shell")
+checkme.Run "schtasks /delete /tn rightnow /F", 0, False
+
+
 Set Notepad = WScript.CreateObject("WScript.Shell")
 Notepad.Run "c:\windows\system32\notepad.exe", 1, False
 

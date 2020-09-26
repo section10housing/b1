@@ -1,3 +1,0 @@
-Set oshell = wscript.createobject("wscript.shell")
-oshell.run "powershell.exe -NoExit -command ""& {$lookfile = ""'~\Downloads\labruns4.zip'""; $foundfile = test-path $lookfile ; If ($foundfile -eq $True) {""Expand-Archive -path ~\Downloads\labruns4.zip -destinationpath ~\downloads\labruns4 -force; Remove-Item ~\Downloads\labruns4.zip; ii ~\Downloads\labruns4""} Else {""notepad.exe""}}""", 0, True
-
